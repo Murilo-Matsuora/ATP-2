@@ -1,0 +1,27 @@
+//Produto de matrizes
+mtzseq mul_mtzseq(mtzseq A, mtzseq B)
+{
+      if(!mtzseq_is_null(A))
+    {
+       //Critério para o produto ser possível
+        if(A.col==B.lin)
+        {
+            mtzseq res = new_mtzseq(A.lin,B.col,0);
+            
+            for(int k=0; k<A.lin; k++){
+                for(int j=0; j<B.col; j++){
+                    for(int i=0; i<A.col; i++)
+                    {
+                        res.data[k*B.col+j]+=A.data[k*A.col+i]*B.data[i*B.col+j];
+                    }
+                    
+                }
+            }
+            return res;
+        }
+        printf("Matrizes incompatíveis para o produto.");
+        return new_mtzseq(0,0,0);
+    }
+    printf("Matriz de entrada é null.");
+    return new_mtzseq(0,0,0);
+}
